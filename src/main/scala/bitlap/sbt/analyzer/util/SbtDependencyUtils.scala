@@ -187,8 +187,8 @@ object SbtDependencyUtils {
     versionRequired: Boolean = true,
     configurationRequired: Boolean = true
   ): (ScInfixExpr, String, ScInfixExpr) = {
-    val sbtFileOpt        = getSbtFileOpt(module)
-    val targetCoordinates = dependency.getCoordinates
+    val sbtFileOpt            = getSbtFileOpt(module)
+    val targetCoordinates     = dependency.getCoordinates
     val targetDepText: String = generateArtifactTextVerbose(
       targetCoordinates.getGroupId,
       targetCoordinates.getArtifactId.replaceAll("_\\d+.*$", ""),
@@ -540,7 +540,7 @@ object SbtDependencyUtils {
       case call: ScMethodCall if call.deepestInvokedExpr.textMatches(SEQ) | call.deepestInvokedExpr.textMatches(LIST) =>
         addDependencyToSeq(call, info)
       case typedSeq: ScTypedExpression if typedSeq.isSequenceArg => addDependencyToTypedSeq(typedSeq, info)
-      case settings: ScMethodCall =>
+      case settings: ScMethodCall                                =>
         settings.getEffectiveInvokedExpr match {
           case expr: ScReferenceExpression if SbtDependencyUtils.isSettings(expr.refName) =>
             Option(addDependencyToSettings(settings, info))
@@ -779,7 +779,7 @@ object SbtDependencyUtils {
   def getBuildModule(module: OpenapiModule): Option[OpenapiModule] = {
     val project       = module.getProject
     val moduleManager = ModuleManager.getInstance(project)
-    val buildModules = for {
+    val buildModules  = for {
       moduleData    <- getSbtModuleData(module).to(Seq)
       m             <- moduleManager.getModules
       sbtModuleData <- getBuildModuleData(project, m)
@@ -821,8 +821,8 @@ object SbtDependencyUtils {
 
           libDepArr.length match {
             case x if x < 3 || x > 4 => null
-            case x if x >= 3 =>
-              val scope = if (x == 3) SbtDependencyCommon.defaultLibScope else libDepArr(3)
+            case x if x >= 3         =>
+              val scope         = if (x == 3) SbtDependencyCommon.defaultLibScope else libDepArr(3)
               val fixedArtifact =
                 if (!DependencyScopeEnum.values.exists(_.toString.toLowerCase.contains(scope.toLowerCase))) {
                   scope
