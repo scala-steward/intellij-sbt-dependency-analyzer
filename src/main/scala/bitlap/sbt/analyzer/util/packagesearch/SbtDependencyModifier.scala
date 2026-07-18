@@ -65,7 +65,7 @@ object SbtDependencyModifier extends ExternalDependencyModificator {
       }.filter(_ != null).sortWith(_.toString < _.toString)
     } yield depPlaces).getOrElse(Seq.empty)
     val newDependencyCoordinates = newDependency.getCoordinates
-    val newArtifactInfo = SbtArtifactInfo(
+    val newArtifactInfo          = SbtArtifactInfo(
       newDependencyCoordinates.getGroupId,
       newDependencyCoordinates.getArtifactId,
       newDependencyCoordinates.getVersion,
@@ -88,7 +88,7 @@ object SbtDependencyModifier extends ExternalDependencyModificator {
     newDependency: UnifiedDependency
   ): Unit = {
     implicit val project: Project = module.getProject
-    val targetedLibDepTuple =
+    val targetedLibDepTuple       =
       SbtDependencyUtils.findLibraryDependency(project, module, currentDependency, configurationRequired = false)
     if (targetedLibDepTuple == null) return
     val oldLibDep = SbtDependencyUtils.processLibraryDependencyFromExprAndString(targetedLibDepTuple, preserve = true)
@@ -143,7 +143,7 @@ object SbtDependencyModifier extends ExternalDependencyModificator {
 
   override def removeDependency(module: OpenapiModule.Module, toRemoveDependency: UnifiedDependency): Unit = {
     implicit val project: Project = module.getProject
-    val targetedLibDepTuple =
+    val targetedLibDepTuple       =
       SbtDependencyUtils.findLibraryDependency(project, module, toRemoveDependency, configurationRequired = false)
     if (targetedLibDepTuple == null) {
       throw AnalyzerCommandNotFoundException("Target dependency not found")
@@ -199,7 +199,7 @@ object SbtDependencyModifier extends ExternalDependencyModificator {
       .asJava
   } catch {
     case c: ControlFlowException => throw c
-    case e: Exception =>
+    case e: Exception            =>
       logger.error(
         s"Error occurs when obtaining the list of supported repositories/resolvers for module ${module.getName} using package search plugin",
         e
@@ -213,7 +213,7 @@ object SbtDependencyModifier extends ExternalDependencyModificator {
     coordinates: UnifiedCoordinates
   ): Boolean = {
     implicit val project: Project = module.getProject
-    val targetedLibDepTuple =
+    val targetedLibDepTuple       =
       SbtDependencyUtils.findLibraryDependency(project, module, currentDependency, configurationRequired = false)
     if (targetedLibDepTuple == null) return false
     // add `(expr).exclude('group', 'artifact')`

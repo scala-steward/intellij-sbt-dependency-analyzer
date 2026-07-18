@@ -39,7 +39,7 @@ trait SbtShellDependencyAnalysisTask:
     val moduleId           = moduleData.getId.split(" ")(0)
     val promise            = Promise[Boolean]()
     val file               = moduleData.getLinkedExternalProjectPath + analysisFilePath(scope, parserTypeEnum)
-    val result = shellCommunication
+    val result             = shellCommunication
       .command(
         getScopedCommandKey(moduleId, scope, parserTypeEnum.cmd),
         new StringBuilder(),
