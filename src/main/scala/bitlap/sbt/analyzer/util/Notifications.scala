@@ -33,7 +33,7 @@ object Notifications {
 
   private def getSdapText(project: Project): String = {
     val sbtVersion = SbtUtils.getSbtVersion(project).binaryVersion
-    val line = if (sbtVersion.major(2) >= Version("1.4")) {
+    val line       = if (sbtVersion.major(2) >= Version("1.4")) {
       "addDependencyTreePlugin"
     } else {
       if (sbtVersion.major(3) >= Version("0.13.10")) {

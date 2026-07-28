@@ -19,7 +19,7 @@ ThisBuild / version := pluginVersion
 
 inThisBuild(
   List(
-    homepage := Some(url("https://github.com/bitlap/intellij-sbt-dependency-analyzer")),
+    homepage   := Some(url("https://github.com/bitlap/intellij-sbt-dependency-analyzer")),
     developers := List(
       Developer(
         id = "jxnu-liguobin",
@@ -51,7 +51,7 @@ lazy val `sbt-dependency-analyzer` = (project in file("."))
     ThisBuild / intellijPluginName := "Sbt Dependency Analyzer",
     ThisBuild / intellijBuild      := intellijVersion,
     ThisBuild / intellijPlatform   := (Global / intellijPlatform).??(IntelliJPlatform.IdeaCommunity).value,
-    signPluginOptions := signPluginOptions.value.copy(
+    signPluginOptions              := signPluginOptions.value.copy(
       enabled = true,
       certFile = Some(file(sys.env.getOrElse("PLUGIN_SIGN_KEY", "/Users/liguobin/chain.crt"))),
       privateKeyFile = Some(file(sys.env.getOrElse("PLUGIN_SIGN_CERT", "/Users/liguobin/private.pem"))),
