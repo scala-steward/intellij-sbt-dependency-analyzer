@@ -45,7 +45,7 @@ final class AnalyzedDotFileParser extends AnalyzedFileParser:
         .sortWith((a, b) => a > b)
         .headOption
         .getOrElse(0)
-    val graph = new Graph(maxId + 1)
+    val graph             = new Graph(maxId + 1)
     val relationLabelsMap = dependencies.relations.map { r =>
       graph.addEdge(r.head, r.tail)
       s"${r.head}-${r.tail}" -> r.label

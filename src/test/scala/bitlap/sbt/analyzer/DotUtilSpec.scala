@@ -18,7 +18,7 @@ class DotUtilSpec extends AnyFlatSpec {
   "parse file as MutableNode" should "ok" in {
     val start = System.currentTimeMillis()
     val file  = getClass.getClassLoader.getResource("test.dot").getFile
-    val ctx =
+    val ctx   =
       ModuleContext(
         file,
         "star-authority-protocol",
