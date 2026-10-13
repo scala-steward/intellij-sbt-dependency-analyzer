@@ -4,7 +4,7 @@ import org.jetbrains.sbtidea.verifier.FailureLevel
 lazy val scala3Version         = "3.6.4"
 lazy val logbackVersion        = "1.5.18"
 lazy val graphvizVersion       = "0.18.1"
-lazy val joorVersion           = "0.9.15"
+lazy val joorVersion           = "0.9.16"
 lazy val scalatestVersion      = "3.2.19"
 lazy val pluginVerifierVersion = "1.305"
 lazy val ktVersion             = "2.1.0"
